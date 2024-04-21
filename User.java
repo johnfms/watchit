@@ -19,8 +19,8 @@ public class User {
     private String lastName;
     private String email;
     private Subscription subscription;
-    private List<String> addedToListMovies;
-    private List<String> userWatchRecord;
+    private List<Movie> addedToListMovies;
+    private List<UserWatchRecord> userWatchRecord;
     
     
 //constractors
@@ -84,11 +84,11 @@ public class User {
     }
 
   
-    public void addToWatchList(String movieTitle) {
+    public void addToWatchList(Movie movieTitle) {
         addedToListMovies.add(movieTitle);
     }
 
-    public void addToWatched(String movieTitle) {
+    public void addToWatched(UserWatchRecord movieTitle) {
        userWatchRecord.add(movieTitle);
     }
 
