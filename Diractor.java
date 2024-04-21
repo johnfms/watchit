@@ -80,7 +80,7 @@ public class Diractor {
         this.movies=new ArrayList<>();
         this.nationality = nationality;
     }
-    /*public void addMovie(movies) {
+    public void addMovie(movies) {
     if (movies != null) {
       movies.add(movies);
     } else {
@@ -95,7 +95,7 @@ public class Diractor {
     } else {
       System.out.println("Error: Invalid index or null movie provided");
     }
-  }*/
+  }
 
   // Delete Movie (by index)
   public void deleteMovie(int index) {
