@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package watchit;
 
 import java.time.LocalDate;
@@ -16,10 +12,12 @@ public class UserWatchRecord {
     private LocalDate dateOfWatching;
     private int rating;
 
-    public UserWatchRecord(int userID) {
+    public UserWatchRecord(int userID, Movie movie) {
         this.userID = userID;
+        this.movie = movie;
     }
 
+   
     public int getUserID() {
         return userID;
     }
