@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package watchit;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,20 +18,30 @@ public class User {
     private Subscription subscription;
     private List<Movie> addedToListMovies;
     private List<UserWatchRecord> userWatchRecord;
+    private ArrayList<String> userIds;
+    private ArrayList<String> passwords;
+
     
     
 //constractors
 
-    public User(int ID, String username, String password, String firstName, String lastName, String email) {
-        this.ID = ID;
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    } 
     public User() {
-       
+        this.userIds = new ArrayList<>();
+        this.passwords = new ArrayList<>();
+    }
+    
+//method to add new user accont        
+    public void addUser(String userId, String password) {
+        this.userIds.add(userId);
+        this.passwords.add(password);
+    }
+ //check methods
+    public boolean isValidUser(String userId, String password) {
+        int index = this.userIds.indexOf(userId);
+        if (index == -1) {
+            return false; // User ID not found
+        }
+        return this.passwords.get(index).equals(password);
     }
      //  getters and setters for all fields 
 
@@ -79,9 +86,7 @@ public class User {
         this.email = email;
     }
    //method to check if password is correct
-   public boolean checkPassword(String enteredPassword) {
-        return enteredPassword.equals(password);
-    }
+   
 
   
     public void addToWatchList(Movie movieTitle) {
@@ -91,11 +96,8 @@ public class User {
     public void addToWatched(UserWatchRecord movieTitle) {
        userWatchRecord.add(movieTitle);
     }
-
-    @Override
-    public String toString() {
-        return "User{" + "ID=" + ID + ", username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", subscription=" + subscription + ", addedToListMovies=" + addedToListMovies + ", userWatchRecord=" + userWatchRecord + '}';
-    }
-
     
 }
+
+
+
