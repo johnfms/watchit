@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package watchit;
 
 import java.util.HashMap;
@@ -10,6 +14,7 @@ import java.util.List;
  */
 public class User {
     private int ID;
+    static private int usernum=1;
     private  String username;
     private String password;
     private String firstName;
@@ -25,6 +30,8 @@ public class User {
         this.password = password;
         this.credentials = new HashMap<>();
         this.credentials.put(username, password); // Add initial credentials
+        ID=usernum;
+        usernum++;
     }
 
     public boolean isValidUser(String username, String password) {
@@ -67,6 +74,14 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     
 
     public void addToWatchList(Movie movieTitle) {
@@ -75,5 +90,19 @@ public class User {
 
     public void addToWatched(UserWatchRecord movieTitle) {
         userWatchRecord.add(movieTitle);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "ID=" + ID +"\n"+ " username=" + username +"\n"+ " password=" + password +"\n"+ " firstName=" + firstName +"\n"+ " lastName=" + lastName +"\n"+ " email=" + email  +"\n"+ "subscription"+subscription+"\n"+" addedToListMovies=" + addedToListMovies +"\n"+ " userWatchRecord=" + userWatchRecord +"\n"+ " credentials=" + credentials + '}';
+    }
+    public String openAcc(String n,String p){
+    if(isValidUser(n, p) ==true){
+      return toString();
+    }
+    else{
+       String x="either username or password are wrong please try again";
+       return x;
+    }
     }
 }
