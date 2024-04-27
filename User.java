@@ -25,10 +25,12 @@ public class User {
     private List<UserWatchRecord> userWatchRecord;
     private final HashMap<String, String> credentials; // Username (key) - Password (value)
 
+    @SuppressWarnings("empty-statement")
     public User(String username, String password) {
         this.username = username;
         this.password = password;
         this.credentials = new HashMap<>();
+        
         this.credentials.put(username, password); // Add initial credentials
         ID=usernum;
         usernum++;
@@ -82,14 +84,22 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<Movie> getAddedToListMovies() {
+        return addedToListMovies;
+    }
+
+    public void setAddedToListMovies(List<Movie> addedToListMovies) {
+        this.addedToListMovies = addedToListMovies;
+    }
     
 
     public void addToWatchList(Movie movieTitle) {
-        addedToListMovies.add(movieTitle);
+        this.addedToListMovies.add(movieTitle);
     }
 
     public void addToWatched(UserWatchRecord movieTitle) {
-        userWatchRecord.add(movieTitle);
+        this.userWatchRecord.add(movieTitle);
     }
 
     @Override

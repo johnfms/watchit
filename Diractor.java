@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 /**
  *
  * @author Seline Ayman
@@ -80,9 +81,9 @@ public class Diractor {
         this.movies=new ArrayList<>();
         this.nationality = nationality;
     }
-    public void addMovie(movies) {
+    public void addMovie(Movie movie) {
     if (movies != null) {
-      movies.add(movies);
+      movies.add( movie);
     } else {
       System.out.println("Error: Cannot add null movie to director");
     }
