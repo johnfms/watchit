@@ -7,7 +7,7 @@ package watchit;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
+import java.util.Scanner;
 /**
  *
  * @author Accounting
@@ -20,20 +20,13 @@ public class WatchIt {
     
       
     public static void main(String[] args) {
-        User u1 = new User("ahmed","12345");
-        User u2 = new User("ali","54321");
-        u1.setFirstName("ahmed");
-        u1.setLastName("adel");
-        u1.setEmail("ahmed@gmail.com");
+        Scanner In=new Scanner(System.in);
+        String uName=In.next() ,Pass=In.next();
+        User u1 =new User("A","123");
+         User u2 =new User("B","153");
+        System.out.println(User.openAcc(uName, Pass));
         
-         u2.setFirstName("ali");
-        u2.setLastName("mohamed");
-        u2.setEmail("ali@gmail.com");
-
- 
-        // Check valid user
-        System.out.println(u1.openAcc("ahmed", "12345"));
-        System.out.println(u1.openAcc("ahmed", "54321"));
+        
         
     Movie[] movies = new Movie[15];
     
@@ -116,9 +109,7 @@ public class WatchIt {
         Arrays.asList("Song Kang-ho", "Lee Sun-kyun", "Cho Yeo-jeong"),
         Arrays.asList("Thriller", "Comedy", "Drama"),
         Arrays.asList("Korean"), "Bong Joon-ho", 8.6, "South Korea", 11400000, 258898815, "https://imdb.com/title/tt1186632/mediaindex?ref_=tt_ov_vi&tv=on"); 
-        u1.setAddedToListMovies((List<Movie>) movies[10]);
-        u1.addToWatchList(movies[14]);
-        System.out.println(u1.toString());
+       
     }
 
 }

@@ -71,7 +71,7 @@ public class Movie {
     //functions
         //info
         public String info() {
-            return "Movie{" +"\n"+ "id=" + id +"\n"+ "title=" + title + "\n"+" releaseDate= (" + releaseDate + ")\n"+"  runningTime=" + runningTime +"\n"+ " cast=" + cast +"\n"+ " genres=" + genres +"\n"+ " languages=" + languages +"\n"+ "director=" + director +"\n"+ " imdbScore=" + imdbScore + "\n"+"country=" + country +"\n"+ " budget=" + budget + "\n"+" revenue=" + revenue +"\n"+ " poster=" + poster + '}';
+            return "Movie{" +"\n"+ "id=" + id +"\n"+ "title=" + title + "\n"+" releaseDate= (" + releaseDate + ")\n"+"  runningTime=" + runningTime +"\n"+ " cast=" + cast +"\n"+ " genres=" + genres +"\n"+ " languages=" + languages +"\n"+ "director=" + director +"\n"+ " imdbScore=" + imdbScore + "\n"+"country=" + country +"\n"+ " budget=" + budget + "\n"+" revenue=" + revenue +"\n"+ " poster=" + poster + "}";
         }
         //unmber of movie
         public int number(){

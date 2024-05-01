@@ -4,6 +4,7 @@
  */
 package watchit;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,34 +15,30 @@ import java.util.List;
  */
 public class User {
     private int ID;
-    static private int usernum=1;
+  
     private  String username;
     private String password;
     private String firstName;
     private String lastName;
     private String email;
     private Subscription subscription;
-    private List<Movie> addedToListMovies;
-    private List<UserWatchRecord> userWatchRecord;
-    private final HashMap<String, String> credentials; // Username (key) - Password (value)
+    private List<Movie> addedToListMovies = new ArrayList<>();
+    private List<Movie> userWatchRecord= new ArrayList<>();
+   
+    private static int userCount = 0;  // Class variable to keep track of user count
 
-    @SuppressWarnings("empty-statement")
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-        this.credentials = new HashMap<>();
-        
-        this.credentials.put(username, password); // Add initial credentials
-        ID=usernum;
-        usernum++;
-    }
+public User(String username, String password) {
+    this.username = username;
+    this.password = password;
+    this.credentials.put(username, password);
+    this.ID = userCount++;
+}
 
-    public boolean isValidUser(String username, String password) {
-        if (!this.credentials.containsKey(username)) {
-            return false;
-        }
-        return this.credentials.get(username).equals(password);
-    }
+   static HashMap<String, String> credentials = new HashMap<>();
+
+  public static boolean isValidUser(String username, String password) {
+    return credentials.containsKey(username) && credentials.get(username).equals(password);
+  }
 
     // Getters and setters for remaining fields (ID, firstName, etc.)
 
@@ -91,28 +88,40 @@ public class User {
 
     public void setAddedToListMovies(List<Movie> addedToListMovies) {
         this.addedToListMovies = addedToListMovies;
+        
+    }
+
+    public List<Movie> getUserWatchRecord() {
+        return userWatchRecord;
+    }
+
+    public void setUserWatchRecord(List<Movie> userWatchRecord) {
+        this.userWatchRecord = userWatchRecord;
     }
     
 
-    public void addToWatchList(Movie movieTitle) {
-        this.addedToListMovies.add(movieTitle);
+   public void addToWatchList(Movie movie) {
+    // Check for null movie (optional)
+    if (movie != null) {
+      addedToListMovies.add(movie);
     }
+  }
 
-    public void addToWatched(UserWatchRecord movieTitle) {
-        this.userWatchRecord.add(movieTitle);
+    public void addToWatched(Movie movieTitle) {
+       if (movieTitle != null) {
+       this.userWatchRecord.add(movieTitle);}
     }
 
     @Override
-    public String toString() {
-        return "User{" + "ID=" + ID +"\n"+ " username=" + username +"\n"+ " password=" + password +"\n"+ " firstName=" + firstName +"\n"+ " lastName=" + lastName +"\n"+ " email=" + email  +"\n"+ "subscription"+subscription+"\n"+" addedToListMovies=" + addedToListMovies +"\n"+ " userWatchRecord=" + userWatchRecord +"\n"+ " credentials=" + credentials + '}';
+    public  String toString() {
+        return "ID=" + ID +"\n"+ " username=" + username +"\n"+ " password=" + password +"\n"+ " firstName=" + firstName +"\n"+ " lastName=" + lastName +"\n"+ " email=" + email  +"\n"+ "subscription"+subscription+"\n"+" addedToListMovies=" + addedToListMovies +"\n"+ " userWatchRecord=" + userWatchRecord +"\n"+ '}';
     }
-    public String openAcc(String n,String p){
-    if(isValidUser(n, p) ==true){
-      return toString();
+    public static String openAcc(String n, String p) {
+    if (isValidUser(n, p)) {
+      return "Account already exists. User Info:"+ new User(n, p).toString();
+    } else {
+      
+      return "either username or password are wrong";
     }
-    else{
-       String x="either username or password are wrong please try again";
-       return x;
-    }
-    }
+  }
 }
