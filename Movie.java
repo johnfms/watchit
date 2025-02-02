@@ -4,9 +4,7 @@
  */
 package watchit;
 
-import java.util.Date;
 import java.util.List;
-import java.text.SimpleDateFormat;
 
 /**
  *
@@ -190,6 +188,8 @@ public class Movie {
         this.poster = poster;
     }
         
-
+public String getTitleAndPoster(){
+   return "(Title  :"+this.title+"  "+"Poster:"+this.poster+")";
+}
 
 }

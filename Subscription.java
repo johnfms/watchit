@@ -9,99 +9,100 @@ package watchit;
  * @author Accounting
  */
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
  abstract class Subscription {
-    private int userId;
-    private String planType;
-    private Price price;
-    private LocalDate startDate;
-
-    public Subscription(int userId, String planType, Price price, LocalDate startDate) {
+    private final int userId;
+    private final String planType;
+    double price=1000.0d;
+    private final LocalDate startDate;
+    
+     public Subscription(int userId, String planType, LocalDate startDate) {
         this.userId = userId;
         this.planType = planType;
-        this.price = price;
-        this.startDate = startDate;
+        this.startDate = startDate; // Set startDate in the constructor
     }
-
-    // Getters and setters omitted for brevity
-
-    public boolean isActive() {
-        // Use LocalDate.until() to calculate days between dates
-        return LocalDate.now().until(startDate.plusDays(30), ChronoUnit.DAYS) <= 0;
+    
+public boolean isActive() {
+  LocalDate endDate = startDate.plusDays(30);
+    return endDate.isAfter(LocalDate.now()) || endDate.isEqual(LocalDate.now());
+}
+    
+public double calculatePrice() {
+        return price;
     }
-
+                    
     public abstract int getWatchingLimit();
 
     public String getPlanType() {
         return planType;
     }
+   
+           
 }
 
- class Price {
 
-    private double basePrice; // Fixed base price
-    private String region; // User's region for potential regional pricing
 
-    public Price(double basePrice, String region) {
-        this.basePrice = basePrice;
-        this.region = region;
-    }
-
-    public double calculatePrice(String planType) {
-        double finalPrice = basePrice;
-
-        switch (planType) {
-            case "STANDARD":
-                finalPrice *= 1.2; // Increase base price by 20% for Standard
-                break;
-            case "PREMIUM":
-                finalPrice *= 1.5; // Increase base price by 50% for Premium
-                break;
-            // No change for Basic plan (already reflected in basePrice)
-        }
-
-        // Implement additional logic for regional pricing if needed
-        if (region.equals("US")) {
-            finalPrice *= 1.08; // Add 8% sales tax for US region (example)
-        }
-
-        return finalPrice;
-    }
-}
 
  class BasicSubscription extends Subscription {
 
-    public BasicSubscription(int userId, Price price, LocalDate startDate) {
-        super(userId, "BASIC", price, startDate);
+    public BasicSubscription(int userId, String planType, LocalDate startDate) {
+        super(userId, "BASIC",startDate);
     }
-
+    
+    @Override
+    public double calculatePrice() {
+        return price;
+    }
     @Override
     public int getWatchingLimit() {
         return 5;
     }
+    @Override
+     public String toString(){
+     return "basic,"+"price("+this.calculatePrice()+"),WatchingLimit:"+this.getWatchingLimit();
+     }
+
 }
 
  class StandardSubscription extends Subscription {
 
-    public StandardSubscription(int userId, Price price, LocalDate startDate) {
-        super(userId, "STANDARD", price, startDate);
+    public StandardSubscription(int userId,String planType,LocalDate startDate) {
+        super(userId, "STANDARD",startDate);
     }
-
+    @Override
+ public double calculatePrice() {
+        this.price=price*1.2;
+        return price;
+    }
     @Override
     public int getWatchingLimit() {
         return 10;
     }
+     @Override
+     public String toString(){
+     return "standard,"+"price("+this.calculatePrice()+"),WatchingLimit:"+this.getWatchingLimit();
+     }
+
 }
 
  class PremiumSubscription extends Subscription {
 
-    public PremiumSubscription(int userId, Price price, LocalDate startDate) {
-        super(userId, "PREMIUM", price, startDate);
+    public PremiumSubscription(int userId,String planType,  LocalDate startDate) {
+        super(userId, "PREMIUM",startDate);
+    }
+    @Override
+    public double calculatePrice() {
+        this.price=price*1.8;
+        return price;
     }
 
     @Override
     public int getWatchingLimit() {
-        return 15;
+       return 15; 
     }
+     @Override
+     public String toString(){
+     return "premium,"+"price("+this.calculatePrice()+"),WatchingLimit:"+this.getWatchingLimit();
+     }
+    
 }

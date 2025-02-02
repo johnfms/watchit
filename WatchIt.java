@@ -4,8 +4,8 @@
  */
 package watchit;
 
+import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 /**
@@ -20,11 +20,7 @@ public class WatchIt {
     
       
     public static void main(String[] args) {
-        Scanner In=new Scanner(System.in);
-        String uName=In.next() ,Pass=In.next();
-        User u1 =new User("A","123");
-         User u2 =new User("B","153");
-        System.out.println(User.openAcc(uName, Pass));
+        
         
         
         
@@ -110,8 +106,121 @@ public class WatchIt {
         Arrays.asList("Thriller", "Comedy", "Drama"),
         Arrays.asList("Korean"), "Bong Joon-ho", 8.6, "South Korea", 11400000, 258898815, "https://imdb.com/title/tt1186632/mediaindex?ref_=tt_ov_vi&tv=on"); 
        
-    }
+    Scanner In=new Scanner(System.in);
+        String uName=In.next() ,Pass=In.next();
+  
+        
+   // User1 data (basic)
+LocalDate startDate1 = LocalDate.parse("2024-04-05");
+User u1 = new User("Mostafa", "123");
+Subscription Basic = new BasicSubscription(1,"Basic", startDate1); // Set startDate here
+        u1.setSubscription(Basic);
+        u1.setID(1);
+        u1.setFirstName("Mostafa");
+        u1.setLastName("Mohamed");
+        u1.setEmail("Mostafa@gmail.com");
+        u1.addToWatched(movies[14].getTitleAndPoster());
+        u1.addToWatched(movies[11].getTitleAndPoster());
+        u1.addToWatched(movies[9].getTitleAndPoster());
+        u1.addToWatched(movies[8].getTitleAndPoster());
+        u1.addToWatched(movies[7].getTitleAndPoster());
+        //u1.addToWatched(movies[2].getTitleAndPoster());
+        u1.addToFavourite(movies[10].getTitleAndPoster());
+      
+// User2 data (basic)
+LocalDate startDate2 = LocalDate.parse("2024-05-01");
+User u2 = new User("Lila", "153");
+Subscription prem = new PremiumSubscription(2, "Premium",startDate2); // Set startDate here
+        u2.setSubscription(prem);
+        u2.setID(2);
+        u2.setFirstName("Lila");
+        u2.setLastName("Adel");
+        u2.setEmail("Lila@gmail.com");
+        u2.addToWatched(movies[0].getTitleAndPoster());
+        u2.addToWatched(movies[1].getTitleAndPoster());
+        u2.addToWatched(movies[2].getTitleAndPoster());
+        u2.addToWatched(movies[3].getTitleAndPoster());
+        u2.addToWatched(movies[4].getTitleAndPoster());
+        u2.addToWatched(movies[5].getTitleAndPoster());
+        u2.addToWatched(movies[6].getTitleAndPoster());
+        u2.addToWatched(movies[7].getTitleAndPoster());
+        u2.addToWatched(movies[8].getTitleAndPoster());
+        u2.addToWatched(movies[9].getTitleAndPoster());
+        u2.addToWatched(movies[10].getTitleAndPoster());
+        u2.addToWatched(movies[11].getTitleAndPoster());
+        u2.addToWatched(movies[12].getTitleAndPoster());
+        u2.addToWatched(movies[13].getTitleAndPoster());
+        u2.addToWatched(movies[14].getTitleAndPoster());
+        u2.addToFavourite(movies[8].getTitleAndPoster());
+       
+// User1 data (basic)
+LocalDate startDate3 = LocalDate.parse("2024-05-04");
+User u3 = new User("Hassan", "126");
+Subscription stand = new StandardSubscription(3,"Standar", startDate3); // Set startDate here
+        u3.setSubscription(stand);
+        u3.setID(3);
+        u3.setFirstName("Hassan");
+        u3.setLastName("Hosny");
+        u3.setEmail("Hassan@gmail.com");
+        u3.addToWatched(movies[0].getTitleAndPoster());
+        u3.addToWatched(movies[1].getTitleAndPoster());
+        u3.addToWatched(movies[2].getTitleAndPoster());
+        u3.addToWatched(movies[3].getTitleAndPoster());
+        u3.addToWatched(movies[4].getTitleAndPoster());
+        u3.addToWatched(movies[5].getTitleAndPoster());
+        u3.addToWatched(movies[6].getTitleAndPoster());
+        u3.addToWatched(movies[7].getTitleAndPoster());
+        u3.addToWatched(movies[8].getTitleAndPoster());
+        u3.addToWatched(movies[9].getTitleAndPoster());
+        u3.addToFavourite(movies[10].getTitleAndPoster());
+        u3.removeFromFavourite(movies[10].getTitleAndPoster());
+        u3.setSubscription(stand);
+        
 
+        
+        Diractor r = new Diractor();
+        r.setdFname("Christopher");
+        r.setdLname("Nolan");
+        r.setdGender("male");
+        r.setdAge(54);
+        r.setNationality("a British and American");
+        r.addMovie(movies[2]);
+        r.addMovie(movies[7]);
+        r.addMovie(movies[8]);
+        //System.out.println(r.directorInfo());
+       Cast C=new Cast("Tom","Hanks",68,"male","American");
+       C.addMovie(6);
+        //System.out.println(C.toString());
+        
+        
+        
+        
+      
+        System.out.println(User.openAcc(uName, Pass));
+       
+        if(User.isValidUser(uName, Pass)){
+             switch (uName) {
+            case "Mostafa":
+                System.out.println("User 1 Subscription Status:");
+                System.out.println(Basic.isActive() ? "Active" : "Inactive");
+                break;
+            case "Lila":
+                System.out.println("User 2 Subscription Status:");
+                System.out.println(prem.isActive() ? "Active" : "Inactive");
+                break;
+            case "Hassan":
+                System.out.println("User 3 Subscription Status:");
+                System.out.println(stand.isActive() ? "Active" : "Inactive");
+                break;
+            default:
+                System.out.println("Invalid username.");
+                break;
+        }
+        
+        SimpleWatchitApp myframe =new SimpleWatchitApp();
+  myframe.SimpleWatchitApp();
+    }
+    }
 }
     
 

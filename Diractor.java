@@ -18,12 +18,12 @@ public class Diractor {
     private String dLname;
     private int dAge;
     private String dGender;
-    private List<Movie>movies;
+    private List<Movie> movies=new ArrayList<>();
     private String nationality;
     //default construcor
    public Diractor(){};
 
-
+//setters and getters
     public String getdFname() {
         return dFname;
     }
@@ -106,11 +106,8 @@ public class Diractor {
       System.out.println("Error: Invalid index provided");
     }
   }
-    public void directorInfo(){
-System.out.print("Director name :"+dFname+dLname+"\nAge:"+dAge+"\n Gender:"+dGender+"\n Nationality:"+nationality);
-for(Movie a:movies){
-System.out.println(a); }
-   
+    public String directorInfo(){
+      return "Director name :"+dFname+dLname+"\nAge:"+dAge+"\n Gender:"+dGender+"\n Nationality:"+nationality+" \n movies:"+ this.getMovies();
     
 }
 }

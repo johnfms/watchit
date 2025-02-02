@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Cast {
 
-  private int id;
+
   private String firstName;
   private String lastName;
   private int age;
@@ -17,10 +17,10 @@ public class Cast {
   private List<Integer> movieIds;
   private String nationality;
 
-
-
-  public Cast(int id, String firstName, String lastName, int age, String gender, String nationality) {
-    this.id = id;
+    public Cast() {
+    }
+  public Cast( String firstName, String lastName, int age, String gender, String nationality) {
+  
     this.firstName = firstName;
     this.lastName = lastName;
     this.age = age;
@@ -29,7 +29,35 @@ public class Cast {
     this.nationality = nationality;
   }
 
+    public String getFirstName() {
+        return firstName;
+    }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public List<Integer> getMovieIds() {
+        return movieIds;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    @Override
+    public String toString() {
+        return "Cast{" + "firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", gender=" + gender + ", movieIds=" + movieIds + ", nationality=" + nationality + '}';
+    }
+//method to add actor movie id to list
   public void addMovie(int movieId) {
     this.movieIds.add(movieId);
   }
